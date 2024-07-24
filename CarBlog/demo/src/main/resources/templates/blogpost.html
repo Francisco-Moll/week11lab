@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${post.title}">Blog Post Title</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1 th:text="${post.title}">Blog Post Title</h1>
+        <p>by <span th:text="${post.author}">Author Name</span></p>
+    </header>
+    
+    <section>
+        <article>
+            <p th:text="${post.content}">This is the content of the blog post.</p>
+        </article>
+        
+        <section>
+            <h2>Comments</h2>
+            <div th:if="${comments.isEmpty()}">
+                <p>No comments yet.</p>
+            </div>
+            <div th:each="comment : ${comments}">
+                <p><strong th:text="${comment.author}">Commenter Name</strong>: <span th:text="${comment.text}">Comment text</span></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Add a Comment</h2>
+            <form th:action="@{/blogposts/{id}/comments(id=${post.id})}" method="post">
+                <div>
+                    <label for="author">Name:</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div>
+                    <label for="text">Comment:</label>
+                    <textarea id="text" name="text" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Submit Comment</button>
+                </div>
+            </form>
+        </section>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Your Blog Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

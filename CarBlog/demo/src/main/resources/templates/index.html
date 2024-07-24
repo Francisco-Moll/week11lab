@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Blog Platform</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/about}">About</a></li>
+            <li><a th:href="@{/users/register}">Register</a></li>
+            <li><a th:href="@{/users/login}">Login</a></li>
+        </ul>
+    </nav>
+    
+    <section>
+        <h2>Recent Blog Posts</h2>
+        <div th:each="post : ${posts}">
+            <h3 th:text="${post.title}">Blog Post Title</h3>
+            <p th:text="${post.content}">Blog post content...</p>
+            <p>Author: <span th:text="${post.author}">Author Name</span></p>
+            <p><a th:href="@{'/blogposts/' + ${post.id}}">Read more...</a></p>
+            <hr/>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Your Blog Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>
