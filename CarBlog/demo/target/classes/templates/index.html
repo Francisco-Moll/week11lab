@@ -21,12 +21,9 @@
     
     <section>
         <h2>Recent Blog Posts</h2>
-        <div th:each="post : ${posts}">
-            <h3 th:text="${post.title}">Blog Post Title</h3>
-            <p th:text="${post.content}">Blog post content...</p>
-            <p>Author: <span th:text="${post.author}">Author Name</span></p>
-            <p><a th:href="@{'/blogposts/' + ${post.id}}">Read more...</a></p>
-            <hr/>
+        <div th:each="post : ${blogPosts}">
+            <h2 th:text="${post.title}">Post Title</h2>
+            <p th:text="${post.content}">Post Content</p>
         </div>
     </section>
     
